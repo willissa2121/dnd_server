@@ -6,8 +6,9 @@ var env = process.env.NODE_ENV || "development";
 var db = {};
 
 if (!global.hasOwnProperty("models")) {
-  var Sequelize = require("sequelize"),
-    sequelize = null;
+  var sequelize;
+  var Sequelize = require("sequelize");
+
   if (process.env.HEROKU_POSTGRESQL_BRONZE_URL) {
     // the application is executed on Heroku ... use the postgres         database
     sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
