@@ -4,6 +4,7 @@ const db = require("../models");
 
 module.exports = {
   userSearch: router.post("/sendData", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const { val, roller } = req.body;
     db.diceRoll.create({ roller, val }).then((val) => {
       console.log("success");
@@ -13,11 +14,10 @@ module.exports = {
           //console.log(entry.dataValues);
           const { val, roller } = entry.dataValues;
           const returnO = { val, roller };
-          returnArray.push(returnO)
-          
+          returnArray.push(returnO);
         });
-        console.log(returnArray)
-        res.json(returnArray)
+        console.log(returnArray);
+        res.json(returnArray);
       });
     });
   }),
