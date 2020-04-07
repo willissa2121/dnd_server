@@ -14,7 +14,7 @@ if (!global.hasOwnProperty("db")) {
     sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BLACK_URL, {
       dialect: "postgres",
       protocol: "postgres",
-      logging: true, //false
+      logging: false
     });
   } else {
     // the application is executed on the local machine ... use mysql

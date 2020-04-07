@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const db = require("./models");
 
 const routes = require("./routes/routes");
-app.use(function (req, res, next) {
+app.use(function (res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
@@ -27,4 +27,5 @@ app.use("/", routes.userSearch);
 app.listen(port, () => {
   console.log("started on localhost:3001");
 });
+
 db.sequelize.sync({ force: true });
