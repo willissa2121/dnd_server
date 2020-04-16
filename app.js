@@ -23,10 +23,10 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/", routes.userSearch);
-app.use("/", routes.refresh);
-
+// app.use("/", routes.userSearch);
+// app.use("/", routes.refresh);
+routes.addRoutes(app)
 app.listen(port, () => {
   console.log("started on localhost:3001");
 });
-db.sequelize.sync({ force: true });
+db.sequelize.sync({ force: false });
