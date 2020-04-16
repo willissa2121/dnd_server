@@ -11,14 +11,26 @@ module.exports = {
       const returnArray = [];
       db.diceRoll.findAll().then((data) => {
         data.map((entry) => {
-          //console.log(entry.dataValues);
-          const { val, roller } = entry.dataValues;
-          const returnO = { val, roller };
+          const { val, roller, createdAt } = entry.dataValues;
+          const returnO = { val, roller, createdAt };
           returnArray.push(returnO);
         });
-        console.log(returnArray);
+
         res.json(returnArray);
       });
+    });
+  }),
+  refresh: router.post("/refreshData", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    db.diceRoll.findAll().then((data) => {
+      const returnArray = [];
+      data.map((entry) => {
+        const { val, roller, createdAt } = entry.dataValues;
+        const returnO = { val, roller, createdAt };
+        returnArray.push(returnO);
+      });
+     // console.log(returnArray)
+      res.json(returnArray);
     });
   }),
 };
